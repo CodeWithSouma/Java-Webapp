@@ -1,5 +1,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
@@ -18,12 +20,32 @@
 </head>
 <body>
 	
-
-	 <div class="container-fluid h-100">
-		  <div class="d-flex justify-content-md-center align-items-center vh-100">
-		   		<h1 id="message"><u>Welcome alien</u>😊</h1>
-		  </div>     
+	 <div class="container-fluid h-100 m-container">
+		  <div class="mx-auto text-center p-3" style="width:70%">
+		   		<h1 id="message" class="">🌼<u>Welcome ${name }</u>🌼</h1>
+		   		<h1 id="todo" class=""> 💛 <u>Todo List</u> 💛</h1>
+		  </div>
+		
+		<div class="d-flex justify-content-center mt-3">
+			   	<ul type="none">
+				   <c:forEach var="item" items="${todoList}">
+				   		<li class="list-item"><p>🏵️ ${item}</p></li>
+					</c:forEach>
+				</ul>		   		
+		   </div>   
 	 </div> 
+	 <div class="d-flex justify-content-center mb-5">
+			<form action="/dashboard" method="post">
+			<div class="row">
+			<div class="col-8">
+				<input type="text" class="form-control" placeholder="Add new item" name="newToDo" aria-label="Add new item">
+			</div>
+			<div class="col-4">
+				 <button type="submit" class="btn btn-primary">Add Item</button>
+			</div>
+			</div>
+			</form>
+	</div>
 	
 	<script
 		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"

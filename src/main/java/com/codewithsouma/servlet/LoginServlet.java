@@ -1,4 +1,4 @@
-package com.codewithsouma;
+package com.codewithsouma.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -8,6 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.codewithsouma.servicess.LoginServicess;
 
 @WebServlet(urlPatterns = "/login")
 public class LoginServlet extends HttpServlet {
@@ -24,18 +26,20 @@ public class LoginServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 
-		if(isValid(email, password)) {
-			boolean isLoggedIn=true;
-			int token=4584;
-
-			response.sendRedirect("/dashboard?isLoggedIn="+isLoggedIn+"&&Token="+token);
+		if(LoginServicess.isValid(email, password)) {
+			boolean isLoggedIn=LoginServicess.getLoggedInStatus();
+			int token=LoginServicess.getToken();
+			
+			String name = "Souma"; //getting name from user
+			request.getSession().setAttribute("name", name);
+			request.getSession().setAttribute("isLoggedIn", isLoggedIn);
+			request.getSession().setAttribute("Token", token);
+			response.sendRedirect("/dashboard");
+			
 		}
 		else
 			response.sendRedirect("/");
 		
 	}
 	
-	private boolean isValid(String email, String password) {
-		return email.equals("souma.hitech@gmail.com") && password.equals("12345");
-	}
 }
