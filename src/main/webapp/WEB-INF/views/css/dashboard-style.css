@@ -1,0 +1,10 @@
+*{
+	margin: 0;
+	padding: 0;
+	background: #508bfc;
+}
+
+#message{
+	font-size: 5rem;
+	color: #ffffff;
+}
