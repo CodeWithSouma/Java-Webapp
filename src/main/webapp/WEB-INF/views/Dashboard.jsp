@@ -29,7 +29,7 @@
 		<div class="d-flex justify-content-center mt-3">
 			   	<ul type="none">
 				   <c:forEach var="item" items="${todoList}">
-				   		<li class="list-item"><p>🏵️ ${item}</p></li>
+				   		<li class="list-item">🏵️ ${item.getName()} &nbsp; &nbsp;<a href="/DeleteServlet?todo=${ item.getName() }" class="btn btn-danger">Delete</a></li>
 					</c:forEach>
 				</ul>		   		
 		   </div>   
